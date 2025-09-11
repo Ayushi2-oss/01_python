@@ -1,0 +1,13 @@
+10/09/2025
+GitHub Actions
+
+It is a CI/CD tool. It is used to automate software development Workflows.
+Trigger IN/TO a Repo -> GitHub EVENT(pull request, creating, some issue etc) -> Automate ACTIONS are done as an response
+
+Workflow are written in yaml format. They are reusable. we can write reusable workflows where we write normal workflows that is in GitHub/workflows
+There are different "Attributes" associated with different things in the workflow.
+Eg -
+whenever we are referring to "actions" {attr = uses}
+for "commands" like chmod etc {attr = run}
+for name {attr : name}
+for telling what triggers the action {attr : on}. 

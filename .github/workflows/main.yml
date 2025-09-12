@@ -14,3 +14,5 @@ jobs : # Define the jobs to run
 
             - name : Execute script # Step name
               run : python hello.py # Run the Python script
+              env :
+                  GREETING : 'Hello, World!' # Set an environment variable

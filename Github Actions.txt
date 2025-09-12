@@ -4,10 +4,72 @@ GitHub Actions
 It is a CI/CD tool. It is used to automate software development Workflows.
 Trigger IN/TO a Repo -> GitHub EVENT(pull request, creating, some issue etc) -> Automate ACTIONS are done as an response
 
+Workflow:
+
 Workflow are written in yaml format. They are reusable. we can write reusable workflows where we write normal workflows that is in GitHub/workflows
 There are different "Attributes" associated with different things in the workflow.
 Eg -
 whenever we are referring to "actions" {attr = uses}
-for "commands" like chmod etc {attr = run}
-for name {attr : name}
-for telling what triggers the action {attr : on}. 
+for "commands" like chmod etc - {attr = run}
+for name - {attr : name}
+for telling what triggers the action -  {attr : on}. 
+jobs - Defines what the workflow will do - {attr : jobs}. Each job is a group of steps that run on a virtual machine.
+runs-on – Specifies the OS for the runner (eg Ubuntu)
+steps – Each job has steps. This one checks out your code and prints a message.
+- name: Checkout code
+This step uses a pre-made GitHub Action called actions/checkout@v4 to:
+"Download your code from GitHub into the virtual machine."
+
+Workflows and everything is running on Github servers. It is managed by github.
+Every job runs on a fresh new Virtual Environment.
+All jobs will run in parallel.
+
+___________________________________________________________________________________________________________________
+
+Event:
+
+It triggers the ACTION(Workflow run). This can be in GitHub like PR, Opening an issue, doing a commit etc. 
+It can be schedule by posting to a RESTAPI.
+
+______________________________________________________________________________________________________________
+
+Jobs:
+
+Job is a set of Steps that are executed on same runner. Each step is either a shell script or action that run.
+jobs are independent of each other and run parallel on different servers
+Steps are dependent of each other and after completion of a step the next step runs which is dependent on it.
+we can even run jobs in "matrix" so that same job can run for different architecture (eg first for OS then some language)
+jobs can be dependent of each other but by default they are independent.
+____________________________________________________________________________________________________________________________
+
+Actions:
+
+Actions are predefined, reusable piece of code that performs a task in workflow. it helps to not get repetitive while writing workflow. we can write our pwn action or get them from GitHub workflow.
+
+eg - Pulling your Git repository from GitHub
+Setting up the correct toolchain for your build environment
+Setting up authentication to your cloud provider
+
+Prebuilt actions that we can reuse like:
+actions/checkout → downloads your code
+actions/setup-python → installs Python
+
+______________________________________________________________________________________________________________________
+
+Runner:
+
+Server that runs our workflows when they're triggered. They execute one job. GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners to run your workflows. Each workflow run executes in a fresh, newly-provisioned virtual machine.
+If you need a different operating system or require a specific hardware configuration, you can host your own runners.
+
+______________________________________________________________________________________________________
+
+What happens BTS :
+
+Let's say we push(Event) the code on GitHub -
+1) GitHub sees the push Event.
+2) Reads our workflow that is .yaml file.
+3) It spins up a VM (ubuntu, window, MacOs).
+4) Executes the steps one by one.
+5) We can see logs and results in Actions Tab.
+
+[ GitHub -> Event -> Reads the yaml -> spins up VM -> execute jobs step by step -> logs and results in Action Tab ]

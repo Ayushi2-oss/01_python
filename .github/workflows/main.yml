@@ -7,7 +7,7 @@ jobs : # Define the jobs to run
             - name : Checkout code # Step name
               uses : actions/checkout@v2 # Use the checkout action(built in) to clone the repository
 
-            - name : Run Hello world
+            - name : Run Hello world  # Step name
               uses : actions/setup-python@v5 # Use the setup-python action to set up Python
               with :
                   python-version : '3.10' # Specify the Python version            
